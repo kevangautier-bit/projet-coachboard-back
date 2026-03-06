@@ -6,12 +6,19 @@ export const findAll = async () => {
 	return rows;
 };
 
+export const search = async (nom: string) => {
+	const [rows] = await client.query<RowDataPacket[]>(
+		"SELECT * FROM COACH WHERE NOM LIKE ? ",
+		[`%${nom}%`],
+	);
+	return rows;
+};
+
 export const findById = async (id: string) => {
 	const [rows] = await client.query<RowDataPacket[]>(
 		"SELECT * FROM COACH WHERE ID_COACH = ?",
 		[id],
 	);
-
 	return rows[0] as RowDataPacket | undefined;
 };
 
