@@ -72,3 +72,13 @@ export const destroy: RequestHandler = async (_req, res, next) => {
 		next(err);
 	}
 };
+
+export const search: RequestHandler = async (req, res, next) => {
+	try {
+		const query = String(req.query.query || "");
+		const rows = await coachRepository.search(query);
+		res.json(rows);
+	} catch (err) {
+		next(err);
+	}
+};
