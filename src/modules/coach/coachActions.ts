@@ -23,3 +23,52 @@ export const getById: RequestHandler = async (_req, res, next) => {
 		next(err);
 	}
 };
+
+export const create: RequestHandler = async (_req, res, next) => {
+	try {
+		const { prenom, nom, email, mot_de_passe } = _req.body;
+		const insertId = await coachRepository.create(
+			prenom,
+			nom,
+			email,
+			mot_de_passe,
+		);
+		res.status(201).json({ id: insertId });
+	} catch (err) {
+		next(err);
+	}
+};
+
+export const update: RequestHandler = async (_req, res, next) => {
+	try {
+		const { prenom, nom, email, mot_de_passe } = _req.body;
+		const updated = await coachRepository.update(
+			String(_req.params.id),
+			prenom,
+			nom,
+			email,
+			mot_de_passe,
+		);
+		if (!updated) {
+			res.sendStatus(404);
+			return;
+		}
+		res.sendStatus(204);
+	} catch (err) {
+		next(err);
+	}
+};
+
+export const destroy: RequestHandler = async (_req, res, next) => {
+	try {
+		const deleted = await coachRepository.destroy(String(_req.params.id));
+
+		if (!deleted) {
+			res.sendStatus(404);
+			return;
+		}
+		res.sendStatus(204);
+	} catch (err) {
+		next(err);
+	}
+};
