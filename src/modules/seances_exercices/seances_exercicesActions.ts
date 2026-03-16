@@ -10,12 +10,6 @@ export const getBySeance: RequestHandler<{ id_seance: string }> = async (
 		const { id_seance } = req.params;
 		const seances_exercices =
 			await seances_exercicesRepository.findBySeance(id_seance);
-		if (seances_exercices.length === 0) {
-			res
-				.status(404)
-				.json({ message: "aucun exercice trouvé pour cette séance" });
-			return;
-		}
 		res.json(seances_exercices);
 	} catch (err) {
 		next(err);
