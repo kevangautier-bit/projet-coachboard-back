@@ -12,11 +12,11 @@ export const findBySeance = async (id_seance: string) => {
 export const create = async (
 	id_seance: string,
 	id_exercice: string,
-	series: string,
-	reps: string,
-	charge: string,
-	repos: string,
-	ordre: string,
+	series: number,
+	reps: number,
+	charge: number,
+	repos: number,
+	ordre: number,
 ) => {
 	const [result] = await client.query<ResultSetHeader>(
 		" INSERT INTO SEANCES_EXERCICES (ID_SEANCE, ID_EXERCICE, SERIES, REPS, CHARGE, REPOS, ORDRE) VALUES (?,?,?,?,?,?,?)",
@@ -27,11 +27,11 @@ export const create = async (
 
 export const update = async (
 	id: string,
-	series: string,
-	reps: string,
-	charge: string,
-	repos: string,
-	ordre: string,
+	series: number,
+	reps: number,
+	charge: number,
+	repos: number,
+	ordre: number,
 ) => {
 	const [result] = await client.query<ResultSetHeader>(
 		"UPDATE SEANCES_EXERCICES SET SERIES = ?, REPS = ?, CHARGE = ?, REPOS = ?, ORDRE = ? WHERE ID_SEANCES_EXERCICES = ?",
