@@ -1,4 +1,5 @@
 import { Router } from "express";
+import authRoutes from "./modules/auth/authRoutes.js";
 import coachRoutes from "./modules/coach/coachRoutes.js";
 import elevesRoutes from "./modules/eleves/elevesRoutes.js";
 import elevesProgrammesRoutes from "./modules/eleves-programmes/elevesprogrammesRoutes.js";
@@ -16,5 +17,6 @@ router.use("/api/coach", coachRoutes);
 router.use("/api/exercices", exercicesRoutes);
 router.use("/api/seances-exercices", seancesExercicesRoutes);
 router.use("/api/programmes", programmesRoutes);
+router.use("/api/auth", authRoutes);
 
 export default router;
