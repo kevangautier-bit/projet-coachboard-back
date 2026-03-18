@@ -3,22 +3,25 @@ import type { RequestHandler } from "express";
 import * as authRepository from "../modules/auth/authRepository.js";
 
 export const checkLogin: RequestHandler = async (req, res, next) => {
-	const { email, mot_de_passe, role } = req.body;
+	const { email, mot_de_passe } = req.body;
 
-	const user =
-		role === "coach"
-			? await authRepository.findCoachByEmail(email)
-			: await authRepository.findEleveByEmail(email);
+	let user = await authRepository.findCoachByEmail(email);
+	let role = "coach";
 
 	if (!user) {
-		res.sendStatus(401).json({ message: "Utilisateur introuvable" });
+		user = await authRepository.findEleveByEmail(email);
+		role = "eleve";
+	}
+
+	if (!user) {
+		res.status(401).json({ message: "Utilisateur introuvable" });
 		return;
 	}
 
 	const passwordValide = bcrypt.compareSync(mot_de_passe, user.MOT_DE_PASSE);
 
 	if (!passwordValide) {
-		res.sendStatus(401).json({ message: "Mauvais identifiants" });
+		res.status(401).json({ message: "Mauvais identifiants" });
 		return;
 	}
 
