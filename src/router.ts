@@ -5,8 +5,9 @@ import elevesProgrammesRoutes from "./modules/eleves-programmes/elevesprogrammes
 import exercicesRoutes from "./modules/exercices/exercicesRoutes.js";
 import itemsRoutes from "./modules/items/itemsRoutes.js";
 import programmesRoutes from "./modules/programmes/programmesRoute.js";
-import seancesExercicesRoutes from "./modules/seances_exercices/seances_exercicesRoutes.js";
 import seancesRoutes from "./modules/seances/seancesRoutes.js";
+import seancesExercicesRoutes from "./modules/seances_exercices/seances_exercicesRoutes.js";
+
 const router = Router();
 
 router.use("/api/items", itemsRoutes);

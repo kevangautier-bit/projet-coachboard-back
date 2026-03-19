@@ -3,8 +3,8 @@ import {
 	create,
 	destroy,
 	getAll,
-	getByProgramme,
 	getById,
+	getByProgramme,
 	update,
 } from "./seancesActions.js";
 
