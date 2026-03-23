@@ -51,7 +51,8 @@ export const verifyToken: RequestHandler = async (req, res, next) => {
 		const secret = process.env.JWT_SECRET;
 		if (!secret) throw new Error("JWT_SECRET manquant");
 
-		jwt.verify(token, secret);
+		const result = jwt.verify(token, secret);
+		(req as any).user = result;
 		next();
 	} catch (_err) {
 		res.status(401).json({ message: "Token invalide ou expiré" });
