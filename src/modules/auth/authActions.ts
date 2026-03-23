@@ -11,7 +11,7 @@ export const signin: RequestHandler = async (req, res, next) => {
 		const token = jwt.sign(
 			{
 				id: user.id,
-				email: user.EMAIL,
+				email: user.email,
 				role: user.role,
 			},
 			secret,
