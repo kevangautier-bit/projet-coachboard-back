@@ -19,7 +19,10 @@ export const checkLogin: RequestHandler = async (req, res, next) => {
 			return;
 		}
 
-		const passwordValide = bcrypt.compareSync(mot_de_passe, user.MOT_DE_PASSE);
+		const passwordValide = await bcrypt.compare(
+			mot_de_passe,
+			user.MOT_DE_PASSE,
+		);
 
 		if (!passwordValide) {
 			res.status(401).json({ message: "Mauvais identifiants" });
