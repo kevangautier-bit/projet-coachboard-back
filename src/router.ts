@@ -9,6 +9,7 @@ import itemsRoutes from "./modules/items/itemsRoutes.js";
 import programmesRoutes from "./modules/programmes/programmesRoute.js";
 import seancesRoutes from "./modules/seances/seancesRoutes.js";
 import seancesExercicesRoutes from "./modules/seances_exercices/seances_exercicesRoutes.js";
+import suiviRoutes from "./modules/suivi/suiviRoutes.js";
 
 const router = Router();
 
@@ -20,6 +21,7 @@ router.use("/api/exercices", verifyToken, exercicesRoutes);
 router.use("/api/seances-exercices", verifyToken, seancesExercicesRoutes);
 router.use("/api/programmes", verifyToken, programmesRoutes);
 router.use("/api/seances", verifyToken, seancesRoutes);
+router.use("/api/suivi", verifyToken, suiviRoutes);
 router.use("/api/auth", authRoutes);
 
 export default router;
