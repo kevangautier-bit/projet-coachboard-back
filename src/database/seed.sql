@@ -32,8 +32,9 @@ INSERT INTO ELEVES (PRENOM, NOM, EMAIL, MOT_DE_PASSE, AGE, POIDS_INITIAL, TAILLE
 ('Karim', 'Derouiche', 'kde13013@gmail.com','$2b$10$nugHd/IzY4MoiJ3WUESCo..nlMDZDxJlzUPxFkcjhiKQ22AApLzHq', 52, 80.00, 1.70, 'renforcement musculaire', 'débutant' );
 
 INSERT INTO ELEVES (PRENOM, NOM, EMAIL, MOT_DE_PASSE, AGE, POIDS_INITIAL, TAILLE, OBJECTIF, NIVEAU) VALUES 
-('Marine', 'Opsommer', 'marine.opsommer@gmail.com', '$2b$10$pceKK4x6z1s1viYwHLPRoOddt92hpk8HJdhmX8lkwu4L5GtiKg7r2', 35, 1.63, 64, 'renforcement musculaire', 'débutant' );
+('Marine', 'Opsommer', 'marine.opsommer@gmail.com', '$2b$10$pceKK4x6z1s1viYwHLPRoOddt92hpk8HJdhmX8lkwu4L5GtiKg7r2', 35, 64, 1.63, 'renforcement musculaire', 'débutant' );
 
-
+INSERT INTO ELEVES (PRENOM, NOM, EMAIL, MOT_DE_PASSE, AGE, POIDS_INITIAL, TAILLE, OBJECTIF, NIVEAU) VALUES 
+('Benjamin', 'Le Meur', 'benjlemeur@gmail.com', '$2b$10$XNzNlNAlzHLwQ7q2WU2noOzB0/fsqEbGA0FhBBogSNG0xr8PhwjRW', 32, 105.00, 1.80, "perte de poids", "débutant" );
 
 
