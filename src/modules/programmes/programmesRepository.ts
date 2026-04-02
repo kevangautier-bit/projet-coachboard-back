@@ -3,7 +3,7 @@ import client from "../../database/client.js";
 
 export const findAll = async () => {
 	const [rows] = await client.query<RowDataPacket[]>(
-		"SELECT * FROM PROGRAMMES",
+		"SELECT ELEVES_PROGRAMMES.DATE_DEBUT, PROGRAMMES.DUREE AS duree_programme, PROGRAMMES.NOM AS nom_programme, ELEVES_PROGRAMMES.STATUT, ELEVES.NOM AS nom_eleve, ELEVES.PRENOM AS prenom_eleve FROM ELEVES_PROGRAMMES JOIN PROGRAMMES ON ELEVES_PROGRAMMES.ID_PROGRAMME = PROGRAMMES.ID_PROGRAMME JOIN ELEVES ON ELEVES_PROGRAMMES.ID_ELEVE = ELEVES.ID_ELEVE",
 	);
 	return rows;
 };
