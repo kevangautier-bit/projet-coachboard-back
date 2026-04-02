@@ -18,7 +18,11 @@ export const findById = async (id: string) => {
 
 export const findByEleve = async (id: string) => {
 	const [rows] = await client.query<RowDataPacket[]>(
-		"SELECT * FROM eleves_programmes WHERE id_eleve = ?",
+		`SELECT ep.id_eleve_programme, ep.date_debut, ep.date_fin, ep.statut,
+            p.nom, p.objectif, p.duree
+     FROM eleves_programmes ep
+     JOIN programmes p ON ep.id_programme = p.id_programme
+     WHERE ep.id_eleve = ?`,
 		[id],
 	);
 	return rows as RowDataPacket[];
