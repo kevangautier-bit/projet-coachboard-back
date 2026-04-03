@@ -2,7 +2,11 @@ import type { ResultSetHeader, RowDataPacket } from "mysql2";
 import client from "../../database/client.js";
 
 export const findAll = async () => {
-	const [rows] = await client.query<RowDataPacket[]>("SELECT * FROM SEANCES");
+	const [rows] = await client.query<RowDataPacket[]>(
+		`SELECT s.*, p.NOM AS nom_programme 
+     FROM SEANCES s 
+     JOIN PROGRAMMES p ON s.ID_PROGRAMME = p.ID_PROGRAMME`,
+	);
 	return rows;
 };
 
