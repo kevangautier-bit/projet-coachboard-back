@@ -4,6 +4,7 @@ import {
 	destroy,
 	getAll,
 	getByDate,
+	getByEleve,
 	getById,
 	getBySeance,
 	update,
@@ -14,6 +15,7 @@ const router = Router();
 router.get("/seance/:id_seance", getBySeance);
 router.get("/date/:date", getByDate);
 router.get("/", getAll);
+router.get("/eleve/:idEleve", getByEleve);
 router.get("/:id", getById);
 router.post("/", create);
 router.put("/:id", update);
