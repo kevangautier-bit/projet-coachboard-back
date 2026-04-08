@@ -30,6 +30,26 @@ export const findByDate = async (date: string) => {
 	return rows as RowDataPacket[];
 };
 
+export const findByEleve = async (idEleve: string) => {
+	const [rows] = await client.query<RowDataPacket[]>(
+		`SELECT 
+			s.*,
+			e.NOM as nom_eleve,
+			e.PRENOM as prenom_eleve,
+			ex.NOM as nom_exercice,
+			se.TITRE as titre_seance
+		FROM SUIVI s
+		JOIN ELEVES_PROGRAMMES ep ON s.ID_ELEVE_PROGRAMME = ep.ID_ELEVE_PROGRAMME
+		JOIN ELEVES e ON ep.ID_ELEVE = e.ID_ELEVE
+		JOIN SEANCES se ON s.ID_SEANCE = se.ID_SEANCE
+		JOIN SEANCES_EXERCICES sex ON s.ID_SEANCES_EXERCICES = sex.ID_SEANCES_EXERCICES
+		JOIN EXERCICES ex ON sex.ID_EXERCICE = ex.ID_EXERCICE
+		WHERE ep.ID_ELEVE = ?`,
+		[idEleve],
+	);
+	return rows as RowDataPacket[];
+};
+
 export const create = async (
 	charge_soulevee: number,
 	reps_reelle: number,
