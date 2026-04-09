@@ -44,10 +44,11 @@ export const update = async (
 	titre: string,
 	jour: string,
 	ordre: number,
+	idProgramme: number,
 ) => {
 	const [result] = await client.query<ResultSetHeader>(
-		"UPDATE SEANCES SET TITRE = ?, JOUR = ?, ORDRE = ? WHERE ID_SEANCE = ?",
-		[titre, jour, ordre, id],
+		"UPDATE SEANCES SET TITRE = ?, JOUR = ?, ORDRE = ?, ID_PROGRAMME = ? WHERE ID_SEANCE = ?",
+		[titre, jour, ordre, idProgramme, id],
 	);
 	return result.affectedRows > 0;
 };

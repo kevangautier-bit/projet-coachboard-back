@@ -45,6 +45,15 @@ export const getByDate: RequestHandler = async (req, res, next) => {
 	}
 };
 
+export const getByEleve: RequestHandler = async (req, res, next) => {
+	try {
+		const rows = await suiviRepository.findByEleve(String(req.params.idEleve));
+		res.json(rows);
+	} catch (err) {
+		next(err);
+	}
+};
+
 // POST /api/suivi
 export const create: RequestHandler = async (req, res, next) => {
 	try {

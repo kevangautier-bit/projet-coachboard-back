@@ -18,7 +18,7 @@ router.use("/api/eleves-programmes", verifyToken, elevesProgrammesRoutes);
 router.use("/api/eleves", verifyToken, elevesRoutes);
 router.use("/api/coach", verifyToken, coachRoutes);
 router.use("/api/exercices", verifyToken, exercicesRoutes);
-router.use("/api/seances-exercices", verifyToken, seancesExercicesRoutes);
+router.use("/api/seances_exercices", verifyToken, seancesExercicesRoutes);
 router.use("/api/programmes", verifyToken, programmesRoutes);
 router.use("/api/seances", verifyToken, seancesRoutes);
 router.use("/api/suivi", verifyToken, suiviRoutes);

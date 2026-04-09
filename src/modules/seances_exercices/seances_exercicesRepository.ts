@@ -3,7 +3,20 @@ import client from "../../database/client.js";
 
 export const findBySeance = async (id_seance: string) => {
 	const [rows] = await client.query<RowDataPacket[]>(
-		"SELECT * FROM SEANCES_EXERCICES WHERE ID_SEANCE = ? ORDER BY ORDRE ASC",
+		`SELECT 
+			SE.ID_SEANCES_EXERCICES,
+			SE.ID_SEANCE,
+			SE.ID_EXERCICE,
+			SE.SERIES,
+			SE.REPS,
+			SE.CHARGE,
+			SE.REPOS,
+			SE.ORDRE,
+			E.NOM AS NOM_EXERCICE
+		FROM SEANCES_EXERCICES SE
+		JOIN EXERCICES E ON E.ID_EXERCICE = SE.ID_EXERCICE
+		WHERE SE.ID_SEANCE = ?
+		ORDER BY SE.ORDRE ASC`,
 		[id_seance],
 	);
 	return rows;
@@ -46,4 +59,18 @@ export const destroy = async (id: string) => {
 		[id],
 	);
 	return result.affectedRows > 0;
+};
+
+export const exists = async (id_seance: string, id_exercice: string) => {
+	const [rows] = await client.query<RowDataPacket[]>(
+		"SELECT 1 FROM SEANCES_EXERCICES WHERE ID_SEANCE = ? AND ID_EXERCICE = ?",
+		[id_seance, id_exercice],
+	);
+	return rows.length > 0;
+};
+
+export const deleteBySeance = async (id_seance: string) => {
+	await client.query("DELETE FROM SEANCES_EXERCICES WHERE ID_SEANCE = ?", [
+		id_seance,
+	]);
 };

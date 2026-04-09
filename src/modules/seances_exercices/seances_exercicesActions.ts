@@ -18,8 +18,29 @@ export const getBySeance: RequestHandler<{ id_seance: string }> = async (
 
 export const create: RequestHandler = async (req, res, next) => {
 	try {
-		const { id_seance, id_exercice, series, reps, charge, repos, ordre } =
-			req.body;
+		const {
+			id_seance,
+			id_exercice,
+			series,
+			reps,
+			charge,
+			repos,
+			ordre,
+			workflow,
+		} = req.body;
+
+		if (workflow === "select") {
+			const exists = await seances_exercicesRepository.exists(
+				id_seance,
+				id_exercice,
+			);
+			if (exists) {
+				return res
+					.status(200)
+					.json({ message: "Exercice déjà lié à cette séance" });
+			}
+		}
+
 		const insertId = await seances_exercicesRepository.create(
 			id_seance,
 			id_exercice,
@@ -66,6 +87,17 @@ export const destroy: RequestHandler = async (req, res, next) => {
 			res.sendStatus(404);
 			return;
 		}
+		res.sendStatus(204);
+	} catch (err) {
+		next(err);
+	}
+};
+
+export const destroyBySeance: RequestHandler = async (req, res, next) => {
+	try {
+		await seances_exercicesRepository.deleteBySeance(
+			String(req.params.id_seance),
+		);
 		res.sendStatus(204);
 	} catch (err) {
 		next(err);

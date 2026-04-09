@@ -19,6 +19,7 @@ export const findById = async (id: string) => {
 export const findByEleve = async (id: string) => {
 	const [rows] = await client.query<RowDataPacket[]>(
 		`SELECT ep.id_eleve_programme, ep.date_debut, ep.date_fin, ep.statut,
+		ep.id_programme,
             p.nom, p.objectif, p.duree
      FROM eleves_programmes ep
      JOIN programmes p ON ep.id_programme = p.id_programme
