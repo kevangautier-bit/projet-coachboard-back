@@ -52,12 +52,13 @@ export const create: RequestHandler = async (_req, res, next) => {
 
 export const update: RequestHandler = async (_req, res, next) => {
 	try {
-		const { titre, jour, ordre } = _req.body;
+		const { titre, jour, ordre, id_programme } = _req.body;
 		const updated = await seancesRepository.update(
 			String(_req.params.id),
 			titre,
 			jour,
 			ordre,
+			id_programme,
 		);
 		if (!updated) {
 			res.sendStatus(404);
