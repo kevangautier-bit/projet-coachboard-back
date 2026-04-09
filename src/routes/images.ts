@@ -8,7 +8,7 @@ router.get("/", (_req: Request, res: Response) => {
 });
 
 router.get("/:id", (req: Request, res: Response) => {
-	const id = parseInt(req.params.id, 10);
+	const id = parseInt(String(req.params.id), 10);
 	const exercice = exercices.find((e) => e.id === id);
 	if (exercice) {
 		res.json(exercice);
@@ -18,7 +18,7 @@ router.get("/:id", (req: Request, res: Response) => {
 });
 
 router.get("/categorie/:cat", (req: Request, res: Response) => {
-	const cat = req.params.cat.toLowerCase();
+	const cat = String(req.params.cat).toLowerCase();
 	const filtered = exercices.filter((e) => e.categorie === cat);
 	res.json(filtered);
 });
