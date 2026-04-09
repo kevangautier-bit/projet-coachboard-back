@@ -1,4 +1,12 @@
-export const exercices = [
+interface Exercice {
+	id: number;
+	nom: string;
+	categorie: string;
+	muscles: string[];
+	gif_url: string;
+}
+
+export const exercices: Exercice[] = [
 	{
 		id: 1,
 		nom: "Lever de jambes",
