@@ -4,13 +4,13 @@ import { exercices } from "../data/images.js";
 const router = express.Router();
 
 // GET /api/exercices
-router.get("/", (req, res) => {
+router.get("/", (_req, res) => {
 	res.json(exercices);
 });
 
 // GET /api/exercices/:id
 router.get("/:id", (req, res) => {
-	const id = parseInt(req.params.id);
+	const id = parseInt(req.params.id, 10);
 	const exercice = exercices.find((e) => e.id === id);
 	if (exercice) {
 		res.json(exercice);

@@ -1,7 +1,7 @@
+import path from "node:path";
+import { fileURLToPath } from "node:url";
 import cors from "cors";
 import express from "express";
-import path from "path";
-import { fileURLToPath } from "url";
 import imagesRouter from "../routes/images.js";
 import router from "./router.js";
 
