@@ -92,3 +92,14 @@ export const destroy: RequestHandler = async (req, res, next) => {
 		next(err);
 	}
 };
+
+export const destroyBySeance: RequestHandler = async (req, res, next) => {
+	try {
+		await seances_exercicesRepository.deleteBySeance(
+			String(req.params.id_seance),
+		);
+		res.sendStatus(204);
+	} catch (err) {
+		next(err);
+	}
+};

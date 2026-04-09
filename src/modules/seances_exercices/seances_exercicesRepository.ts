@@ -68,3 +68,9 @@ export const exists = async (id_seance: string, id_exercice: string) => {
 	);
 	return rows.length > 0;
 };
+
+export const deleteBySeance = async (id_seance: string) => {
+	await client.query("DELETE FROM SEANCES_EXERCICES WHERE ID_SEANCE = ?", [
+		id_seance,
+	]);
+};
