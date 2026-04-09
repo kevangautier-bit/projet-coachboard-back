@@ -2,8 +2,8 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import cors from "cors";
 import express from "express";
-import imagesRouter from "../routes/images.js";
 import router from "./router.js";
+import imagesRouter from "./routes/images.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
