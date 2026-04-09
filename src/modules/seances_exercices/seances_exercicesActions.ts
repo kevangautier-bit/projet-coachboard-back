@@ -18,8 +18,29 @@ export const getBySeance: RequestHandler<{ id_seance: string }> = async (
 
 export const create: RequestHandler = async (req, res, next) => {
 	try {
-		const { id_seance, id_exercice, series, reps, charge, repos, ordre } =
-			req.body;
+		const {
+			id_seance,
+			id_exercice,
+			series,
+			reps,
+			charge,
+			repos,
+			ordre,
+			workflow,
+		} = req.body;
+
+		if (workflow === "select") {
+			const exists = await seances_exercicesRepository.exists(
+				id_seance,
+				id_exercice,
+			);
+			if (exists) {
+				return res
+					.status(200)
+					.json({ message: "Exercice déjà lié à cette séance" });
+			}
+		}
+
 		const insertId = await seances_exercicesRepository.create(
 			id_seance,
 			id_exercice,

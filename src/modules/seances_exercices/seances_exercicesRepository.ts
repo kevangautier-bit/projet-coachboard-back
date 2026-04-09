@@ -60,3 +60,11 @@ export const destroy = async (id: string) => {
 	);
 	return result.affectedRows > 0;
 };
+
+export const exists = async (id_seance: string, id_exercice: string) => {
+	const [rows] = await client.query<RowDataPacket[]>(
+		"SELECT 1 FROM SEANCES_EXERCICES WHERE ID_SEANCE = ? AND ID_EXERCICE = ?",
+		[id_seance, id_exercice],
+	);
+	return rows.length > 0;
+};
