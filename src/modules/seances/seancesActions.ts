@@ -53,12 +53,20 @@ export const create: RequestHandler = async (_req, res, next) => {
 export const update: RequestHandler = async (_req, res, next) => {
 	try {
 		const { titre, jour, ordre, id_programme } = _req.body;
+
+		// Récupère la séance existante d'abord
+		const seance = await seancesRepository.findById(String(_req.params.id));
+		if (!seance) {
+			res.sendStatus(404);
+			return;
+		}
+
 		const updated = await seancesRepository.update(
 			String(_req.params.id),
-			titre,
-			jour,
-			ordre,
-			id_programme,
+			titre ?? seance.TITRE,
+			jour ?? seance.JOUR,
+			ordre ?? seance.ORDRE,
+			id_programme ?? seance.ID_PROGRAMME,
 		);
 		if (!updated) {
 			res.sendStatus(404);
