@@ -3,7 +3,20 @@ import client from "../../database/client.js";
 
 export const findBySeance = async (id_seance: string) => {
 	const [rows] = await client.query<RowDataPacket[]>(
-		"SELECT * FROM SEANCES_EXERCICES WHERE ID_SEANCE = ? ORDER BY ORDRE ASC",
+		`SELECT 
+			SE.ID_SEANCES_EXERCICES,
+			SE.ID_SEANCE,
+			SE.ID_EXERCICE,
+			SE.SERIES,
+			SE.REPS,
+			SE.CHARGE,
+			SE.REPOS,
+			SE.ORDRE,
+			E.NOM AS NOM_EXERCICE
+		FROM SEANCES_EXERCICES SE
+		JOIN EXERCICES E ON E.ID_EXERCICE = SE.ID_EXERCICE
+		WHERE SE.ID_SEANCE = ?
+		ORDER BY SE.ORDRE ASC`,
 		[id_seance],
 	);
 	return rows;
