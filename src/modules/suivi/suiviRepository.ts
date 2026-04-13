@@ -119,3 +119,11 @@ export const destroy = async (id: string) => {
 	);
 	return result.affectedRows > 0;
 };
+
+export const destroyByEleveProgramme = async (id: string) => {
+    const [result] = await client.query<ResultSetHeader>(
+        "DELETE FROM suivi WHERE id_eleve_programme = ?",
+        [id],
+    );
+    return result.affectedRows > 0;
+};
