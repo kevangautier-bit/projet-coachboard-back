@@ -142,3 +142,25 @@ export const destroy: RequestHandler = async (req, res, next) => {
 		next(err);
 	}
 };
+
+// DELETE /api/eleve_programme/:id
+export const destroyByEleveProgramme: RequestHandler = async (
+	req,
+	res,
+	next,
+) => {
+	try {
+		const deleted = await suiviRepository.destroyByEleveProgramme(
+			String(req.params.id),
+		);
+
+		if (!deleted) {
+			res.status(404).json({ error: "Suivi non trouvé" });
+			return;
+		}
+
+		res.sendStatus(204);
+	} catch (err) {
+		next(err);
+	}
+};

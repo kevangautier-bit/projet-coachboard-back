@@ -121,9 +121,9 @@ export const destroy = async (id: string) => {
 };
 
 export const destroyByEleveProgramme = async (id: string) => {
-    const [result] = await client.query<ResultSetHeader>(
-        "DELETE FROM suivi WHERE id_eleve_programme = ?",
-        [id],
-    );
-    return result.affectedRows > 0;
+	const [result] = await client.query<ResultSetHeader>(
+		"DELETE FROM suivi WHERE id_eleve_programme = ?",
+		[id],
+	);
+	return result.affectedRows > 0;
 };
