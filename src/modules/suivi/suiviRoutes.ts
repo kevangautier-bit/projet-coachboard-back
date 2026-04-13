@@ -2,6 +2,7 @@ import { Router } from "express";
 import {
 	create,
 	destroy,
+	destroyByEleveProgramme,
 	getAll,
 	getByDate,
 	getByEleve,
@@ -20,5 +21,6 @@ router.get("/:id", getById);
 router.post("/", create);
 router.put("/:id", update);
 router.delete("/:id", destroy);
+router.delete("/eleve-programme/:id", destroyByEleveProgramme);
 
 export default router;
