@@ -2,6 +2,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import cors from "cors";
 import express from "express";
+import { errorHandler } from "./middlewares/errorHandler.js";
 import router from "./router.js";
 import imagesRouter from "./routes/images.js";
 
@@ -11,7 +12,7 @@ const __dirname = path.dirname(__filename);
 const app = express();
 
 // Middlewares
-app.use(cors());
+app.use(cors({ origin: ["http://localhost:5173"] }));
 app.use(express.json());
 
 // Sert les GIFs en statique
@@ -22,5 +23,9 @@ app.use("/api/gifs", imagesRouter);
 
 // Routes
 app.use(router);
+
+// Gestion d'erreurs sur l'App
+
+app.use(errorHandler);
 
 export default app;
