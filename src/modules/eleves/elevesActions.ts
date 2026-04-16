@@ -1,3 +1,4 @@
+import bcrypt from "bcrypt";
 import type { RequestHandler } from "express";
 import * as elevesRepository from "./elevesRepository.js";
 
@@ -52,11 +53,12 @@ export const create: RequestHandler = async (req, res, next) => {
 			objectif,
 			niveau,
 		} = req.body;
+		const hashedPassword = await bcrypt.hash(mot_de_passe, 10);
 		const insertId = await elevesRepository.create(
 			prenom,
 			nom,
 			email,
-			mot_de_passe,
+			hashedPassword,
 			age,
 			poids_initial,
 			taille,
@@ -69,7 +71,6 @@ export const create: RequestHandler = async (req, res, next) => {
 	}
 };
 
-// PUT /api/eleves/:id
 export const update: RequestHandler = async (req, res, next) => {
 	try {
 		const {
@@ -83,30 +84,28 @@ export const update: RequestHandler = async (req, res, next) => {
 			objectif,
 			niveau,
 		} = req.body;
+		const hashedPassword = await bcrypt.hash(mot_de_passe, 10);
 		const updated = await elevesRepository.update(
 			String(req.params.id),
 			prenom,
 			nom,
 			email,
-			mot_de_passe,
+			hashedPassword,
 			age,
 			poids_initial,
 			taille,
 			objectif,
 			niveau,
 		);
-
 		if (!updated) {
 			res.sendStatus(404);
 			return;
 		}
-
 		res.sendStatus(204);
 	} catch (err) {
 		next(err);
 	}
 };
-
 // DELETE /api/eleves/:id
 export const destroy: RequestHandler = async (req, res, next) => {
 	try {
