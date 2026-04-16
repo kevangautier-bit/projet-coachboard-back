@@ -13,6 +13,8 @@ export const signin: RequestHandler = async (req, res, next) => {
 				id: user.id,
 				email: user.email,
 				role: user.role,
+				prenom: user.prenom,
+				nom: user.nom,
 			},
 			secret,
 			{ expiresIn: "24h" },
