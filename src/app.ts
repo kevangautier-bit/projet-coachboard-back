@@ -5,6 +5,7 @@ import express from "express";
 import { errorHandler } from "./middlewares/errorHandler.js";
 import router from "./router.js";
 import imagesRouter from "./routes/images.js";
+import "dotenv/config";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
