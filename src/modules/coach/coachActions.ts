@@ -1,3 +1,4 @@
+import bcrypt from "bcrypt";
 import type { RequestHandler } from "express";
 import * as coachRepository from "../coach/coachRepository.js";
 
@@ -27,11 +28,12 @@ export const getById: RequestHandler = async (_req, res, next) => {
 export const create: RequestHandler = async (_req, res, next) => {
 	try {
 		const { prenom, nom, email, mot_de_passe } = _req.body;
+		const hashedPassword = await bcrypt.hash(mot_de_passe, 10);
 		const insertId = await coachRepository.create(
 			prenom,
 			nom,
 			email,
-			mot_de_passe,
+			hashedPassword,
 		);
 		res.status(201).json({ id: insertId });
 	} catch (err) {
@@ -42,12 +44,13 @@ export const create: RequestHandler = async (_req, res, next) => {
 export const update: RequestHandler = async (_req, res, next) => {
 	try {
 		const { prenom, nom, email, mot_de_passe } = _req.body;
+		const hashedPassword = await bcrypt.hash(mot_de_passe, 10);
 		const updated = await coachRepository.update(
 			String(_req.params.id),
 			prenom,
 			nom,
 			email,
-			mot_de_passe,
+			hashedPassword,
 		);
 		if (!updated) {
 			res.sendStatus(404);

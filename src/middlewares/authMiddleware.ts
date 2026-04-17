@@ -34,6 +34,8 @@ export const checkLogin: RequestHandler = async (req, res, next) => {
 			id: role === "coach" ? user.ID_COACH : user.ID_ELEVE,
 			email: user.EMAIL,
 			role,
+			prenom: user.PRENOM,
+			nom: user.NOM,
 		};
 		next();
 	} catch (err) {
