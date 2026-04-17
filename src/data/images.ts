@@ -180,3 +180,21 @@ export const exercices: Exercice[] = [
 		gif_url: "/gifs/Homme faisant des pompes pour la poitrine.gif",
 	},
 ];
+
+export const appImages = [
+	{
+		id: 1,
+		nom: "objectifs",
+		url: "/gifs/images/objectifs.png",
+	},
+	{
+		id: 2,
+		nom: "progression",
+		url: "/gifs/images/progression.png",
+	},
+	{
+		id: 3,
+		nom: "exercices",
+		url: "/gifs/images/exercices.png",
+	},
+];
