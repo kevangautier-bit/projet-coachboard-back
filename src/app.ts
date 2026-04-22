@@ -19,6 +19,8 @@ app.use(
 			"http://localhost:5173",
 			"https://projet-coachboard-front.vercel.app",
 		],
+		methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+		allowedHeaders: ["Content-Type", "Authorization"],
 	}),
 );
 app.use(express.json());
