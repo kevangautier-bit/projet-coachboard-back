@@ -127,3 +127,15 @@ export const destroyByEleveProgramme = async (id: string) => {
 	);
 	return result.affectedRows > 0;
 };
+
+export const checkDejaRealisee = async (
+	id_seance: string,
+	date: string,
+	id_eleve_programme: string,
+) => {
+	const [rows] = await client.query<RowDataPacket[]>(
+		"SELECT COUNT(*) as total FROM suivi WHERE id_seance = ? AND date = ? AND id_eleve_programme = ?",
+		[id_seance, date, id_eleve_programme],
+	);
+	return (rows[0] as RowDataPacket).total > 0;
+};

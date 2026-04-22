@@ -164,3 +164,19 @@ export const destroyByEleveProgramme: RequestHandler = async (
 		next(err);
 	}
 };
+
+export const checkDejaRealisee: RequestHandler = async (req, res, next) => {
+	try {
+		const id_seance = String(req.params.id_seance);
+		const date = String(req.params.date);
+		const id_eleve_programme = String(req.params.id_eleve_programme);
+		const dejaRealisee = await suiviRepository.checkDejaRealisee(
+			id_seance,
+			date,
+			id_eleve_programme,
+		);
+		res.json({ dejaRealisee });
+	} catch (err) {
+		next(err);
+	}
+};
