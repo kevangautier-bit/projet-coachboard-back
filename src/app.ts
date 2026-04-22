@@ -13,7 +13,14 @@ const __dirname = path.dirname(__filename);
 const app = express();
 
 // Middlewares
-app.use(cors({ origin: ["http://localhost:5173"] }));
+app.use(
+	cors({
+		origin: [
+			"http://localhost:5173",
+			"https://projet-coachboard-front.vercel.app",
+		],
+	}),
+);
 app.use(express.json());
 
 // Sert les GIFs en statique
