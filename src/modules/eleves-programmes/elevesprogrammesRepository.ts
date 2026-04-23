@@ -16,15 +16,14 @@ export const findById = async (id: string) => {
 	return rows[0] as RowDataPacket | undefined;
 };
 
-export const findByEleve = async (id: string) => {
+export const findByEleve = async (id: number) => {
 	const [rows] = await client.query<RowDataPacket[]>(
-		`SELECT ep.id_ELEVE_PROGRAMME, ep.date_debut, ep.date_fin, ep.statut,
-		ep.id_programme,
-            p.nom, p.objectif, p.duree
-     FROM ELEVES_PROGRAMMES ep
-     JOIN PROGRAMMES p ON ep.id_programme = p.id_programme
-     WHERE ep.id_eleve = ?`,
-		[id],
+		`SELECT ep.ID_ELEVE_PROGRAMME, ep.DATE_DEBUT, ep.DATE_FIN, ep.STATUT,
+    ep.ID_PROGRAMME,
+    p.NOM, p.OBJECTIF, p.DUREE
+FROM ELEVES_PROGRAMMES ep
+JOIN PROGRAMMES p ON ep.ID_PROGRAMME = p.ID_PROGRAMME
+WHERE ep.ID_ELEVE = ?`[id],
 	);
 	return rows as RowDataPacket[];
 };
