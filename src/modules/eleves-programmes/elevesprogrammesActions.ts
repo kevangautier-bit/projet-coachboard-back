@@ -31,7 +31,7 @@ export const getById: RequestHandler = async (req, res, next) => {
 export const getByEleve: RequestHandler = async (req, res, next) => {
 	try {
 		const elevesProgrammes = await elevesProgrammesRepository.findByEleve(
-			String(req.params.id),
+			Number(req.params.id),
 		);
 		res.json(elevesProgrammes);
 	} catch (err) {
